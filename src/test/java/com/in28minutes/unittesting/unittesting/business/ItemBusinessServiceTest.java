@@ -22,8 +22,14 @@ class ItemBusinessServiceTest {
 	void testRetreiveHardcodedItem() {
 		ItemBusinessService businessService = new ItemBusinessService();//arrange
 		Item item = businessService.retreiveHardcodedItem();//act
-		assertNotNull(item);
+		when(repository.save(item)).thenReturn(item);
+		Item saved = business.saveItem(item);
+		//when(repository.Equals(item)).thenReturn(if(saved.getName().equals("Ball"))return true;);
+		
+		//Item item2=new Item(1, "Ball",10,100);
+		
 		//assertEquals(new Item(1, "Ball",10,100),item);
+		//boolean ans=business.Check(item);
 	}
 	
 	@Test
@@ -35,13 +41,23 @@ class ItemBusinessServiceTest {
 		assertNotNull(item.getId());
 	}
 	
-//	@Test
-//	void testUpdateItems() {
-//		Item item = new Item(2,"Item5",20,30);
-//		//when(repository.update(item)).thenReturn(item);
-//		business.updateItem(item);
-//		assertEquals("Item3",item.getName());
-//	}
+@Test
+void testNoName() {
+	Item item = new Item(5,"",20,30);
+	when(repository.save(item)).thenReturn(item);
+	Item saved = business.saveItem(item);
+	assertEquals("",saved.getName());
+	assertNotNull(item.getName());
+
+}
+
+
+//	when(repository.save(item)).thenReturn(item);
+//	Item saved = business.saveItem(item);
+//	assertEquals("",saved.getName());
+
+
+
 
 	@Test
 	void testRetrieveAllItems() {

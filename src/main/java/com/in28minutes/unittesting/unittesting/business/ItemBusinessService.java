@@ -36,6 +36,9 @@ public class ItemBusinessService {
 		return repository.save(item);
 		
 	}
+//	public boolean Check(Item item) {
+//		return repository.Equals(item);
+//	}
 
 //	public Item updateItem(Item item) {
 //		//return repository.update(item);
